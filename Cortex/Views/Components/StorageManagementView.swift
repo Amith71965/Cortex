@@ -256,23 +256,16 @@ struct StorageStatCard: View {
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Bookmark.self, Tag.self, configurations: config)
-        
-        return StorageManagementView()
-            .modelContainer(container)
-            .background(
-                LinearGradient(
-                    colors: [
-                        CortexColors.primary.deepSpace,
-                        CortexColors.primary.darkBlue
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
+    StorageManagementView()
+        .modelContainer(for: [Bookmark.self, Tag.self], inMemory: true)
+        .background(
+            LinearGradient(
+                colors: [
+                    CortexColors.primary.deepSpace,
+                    CortexColors.primary.darkBlue
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
             )
-    } catch {
-        return Text("Preview Error")
-    }
+        )
 }
